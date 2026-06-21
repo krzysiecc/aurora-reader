@@ -1,8 +1,0 @@
-id ksiazki
-author
-title
-last-op
-descr
-
-cover png
-and file

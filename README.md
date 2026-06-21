@@ -1,139 +1,151 @@
-<!-- shields.io -->
+<div align="center">
 
-# aurora reader
+# 🌌 Aurora Reader
 
-for everyone who loves reading e-books. log in to our site, add your favourites and read.
+**A glassy, dark/light e-book reader — log in, build your library, and read EPUB, PDF & TXT right in the browser.**
+_read. easier._
 
-read. easier.
+[![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![React Router](https://img.shields.io/badge/React%20Router-6-CA4245?logo=reactrouter&logoColor=white)](https://reactrouter.com/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.txt)
 
-## Table of Contents
- 
- - [1. Defining](#1-defining)
-	* [1.1 Project class](#11-project-class)
-	
- - [2. Planning](#2-planning)
-	* [2.1 Figma](#21-figma)
-	* [2.2 Inkscape](#22-inkscape)
-	* [2.3 Discord discussions](#23-discord-discussions)
-	
- - [3. Implementation](#3-implementation)
-	* [3.1 Ways of communication](#31-ways-of-communication)
-	* [3.2 PDD - Project Development Documentation](#32-PDD---Project-Development-Documentation)
-	
- - [4. Control and constant monitoring](#4-control-and-constant-monitoring)
-	* [4.1 Control](#41-control)
-	* [4.2 Monitoring](#42-monitoring)
-	
- - [5. The End](#5-the-end)
- 
- - - -
- 
-## 1. Defining
+</div>
 
- ### 1.1 Project class
- 
- september 2021 - start of the project, codename establishment\
- to\
- october 2021 - first project
- 
-## 2. Planning
+---
 
- ### 2.1 Figma
+## ✨ Overview
 
-october 2021 \
- [Figma project](https://www.figma.com/file/ezATyGj7pu6BFV9ezn0ib4/Project-Layout?node-id=2%3A2)
+Aurora Reader is a web-based e-book library and reader. Create an account, add your
+books (with covers), and read them in a distraction-free view with adjustable
+typography, bookmarks and saved reading progress — all wrapped in a glass-morphism UI
+with an animated particle background and a full light/dark theme.
 
- ### 2.2 Inkscape
- actually whole 2021\
- [Inkscape](https://inkscape.org)
+Originally a 2021–2022 student prototype (React 17 / Create React App / styled-components),
+it has been rebuilt on a modern **TypeScript + Vite + Tailwind** stack with real,
+working functionality.
 
- ### 2.3 Discord discussions
-and actually whole 2021 and 2022
+> 🔒 **Where the data lives:** this is a **front-end-only** app. Accounts and book
+> metadata are stored in `localStorage`; covers and book files are stored in
+> **IndexedDB**. Everything works offline with no server. The auth and library layers
+> are written behind a small async API so you can drop in a real backend (e.g. Supabase)
+> without touching the UI — see [Going real](#-going-real).
 
-## 3. Implementation 
+## 🖥️ Features
 
- ### 3.1 Ways of communication
- 
- there were numerous possible ways of communication, but our favourites are: Discord, Discord and GitHub <3
- 
- ### 3.2. PDD - Project Development Documentation
+| Feature           | Notes                                                                          |
+| ----------------- | ------------------------------------------------------------------------------ |
+| 🔐 **Accounts**   | Register / log in / log out, persisted session, protected routes               |
+| 📚 **Library**    | Add / edit / delete books with cover + file upload (IndexedDB)                 |
+| 🔎 **Organise**   | Search by title/author, filter by shelf (Unread / Reading / Finished), sort    |
+| 📖 **Reader**     | Reads **EPUB** (epub.js), **PDF** (pdf.js / react-pdf) and **TXT**             |
+| 🅰️ **Typography** | Adjustable font (serif/sans), size, line-height and column width               |
+| 🔖 **Bookmarks**  | Add/jump/remove bookmarks per book                                             |
+| 📈 **Progress**   | Reading position is saved and restored; auto-shelves to "Reading" / "Finished" |
+| 🌗 **Theming**    | Light/dark toggle persisted to `localStorage`, system-preference aware         |
+| ✨ **Particles**  | Animated cursor-trail canvas background (with proper teardown)                 |
+| ♿ **Accessible** | Real buttons, keyboard nav (←/→ to page), focus states, ARIA labels            |
+| ⚡ **Fast**       | Heavy reader engines are code-split and lazy-loaded on demand                  |
 
-the data collected during the work are presented in the form of a table divided into 3 columns:
- - "Website element" - all declared tasks divided into thematic categories;
- - "Progress" - a graphical interpretation explained below;
- - "Target finish date" - an expected target date of completion of a given project task,
- - "Person responsable" - as it is.
+## 🛠️ Tech Stack
 
-the progress-stage interpretation:
+- **React 18** + **TypeScript 5**
+- **Vite 5** (dev server + build)
+- **Tailwind CSS 3** (`darkMode: 'class'`, design tokens ported from the original theme)
+- **React Router 6**
+- **epub.js** · **react-pdf** (pdf.js) — book rendering
+- **idb-keyval** — IndexedDB blob storage
+- **lucide-react** — icons
 
-- **✔** - finished and working functions,
+## 🚀 Getting Started
 
-- **🚧** - in progress / partially functioning,
+```bash
+# 1. Install dependencies
+npm install
 
-- **❌** - undesigned and not done tasks.
+# 2. Start the dev server (http://localhost:3000)
+npm run dev
 
-- - -
+# 3. Type-check + production build  ->  /dist
+npm run build
 
-***As of the day: 2.01.2022***
+# 4. Preview the production build
+npm run preview
+```
 
+No environment variables or backend are required — register an account and start adding books.
 
-| website element - back end | progress | target finish date | person responsible | finish date | 
-|-|:-:|:-:|:-:|:-:|         
-| Connection of the following to the main GitHub site: CircleCI platform with its own database | canceled | | |  | 
-| Back-end (user authorization) |✔|30.09.2021|Ula|01.10.2021| 
-| Connection of the back-end functionalities to the front-end design: login, register|✔|9.10.2021|Ula|05.10.2021| 
-| Back-end (library) |✔|31.10.2021|Ula| 24.10.2021 | 
-| Connection of the back-end functionalities to the front-end design: library |✔|23.12.2021| Ula | 2.01.2021 | 
-| Back-end (file sending, including images) |✔|19.12.2021|Ula| 2.01.2022 | 
-| Set up docker for the server and db |✔|26.12.2021|Ula| 31.12.2021 - 2.01.2021 | 
-| Back-end hosting |✔|31.12.2021|Ula| 2.01.2021 | 
+## 📂 Project Structure
 
-| website element - front end | progress | target finish date | person responsible | finish date | 
-|-|:-:|:-:|:-:|:-:| 
-| Setting up react.js to upcoming features |✔|30.09.2021|Ula, Krzysiu| 24.09.2021 |   
-| Design of the project (both desktop and mobile) (Figma) |✔|30.09.2021|Ula| 23.09.2021 | 
-| Design of the logo: draw-version |✔|10.10.2021|Sandra, Pola| 04.10.2021 | 
-| Design of the logo: convert to a vector version |✔|17.10.2021|Krzysiu| 20.12.2021 | 
-| Design of the icons | canceled |  |  |  | 
-| Design of the background: particles |✔|29.09.2021|Ula| 29.09.2021 | 
-| Design of the main page: basic UI |✔|30.09.2021|Krzysiu| 6.10.2021 | 
-| Setting up package.json: added necessary entries |✔|31.10.2021|Krzysiu| 16.10.2021 | 
-| Design of the login / register component: background, font, animations |✔|30.09.2021|Krzysiu| 6.10.2021 | 
-| (Look) Design of the header (navbar) component: background, font, animations |✔|12.10.2021|Krzysiu| 6.10.2021 |
-| (Content) Design of the header (navbar) component: dropdown context menu, active logout |✔|14.11.2021|Krzysiu| 2.01.2022 | 
-| Design of the light / dark theme toggle: react-scripts, all the functionalities (logo-changing-script etc.), colorsheets |✔|31.10.2021|Krzysiu, Sandra|31.10.2021| 
-| Design of the main page: optimization |✔|31.10.2021|Ula|31.10.2021|
-| Desing of the "Welcome" component: logo-pointing, title animation, short navbar context menu |✔|14.10.2021|Krzysiu|17.10.2021 | 
-| Design of the login / register component: advanced UI, all components added to "Pages" |✔|16.10.2021|Krzysiu|21.10.2021 | 
-| Design of the main dashboard: layout, color changes |✔|14.11.2021|Krzysiu| 7.12.2021 |
-| Design of the book page: layout, color, font style |✔|31.12.2021|Krzysiu| 2.01.2021 |
+```
+aurora-reader/
+├── index.html                 # Vite entry HTML (#root + #modal-root)
+├── vite.config.ts             # Vite + React + "@/" path alias
+├── tailwind.config.js         # theme tokens (accent / ink / graphite / paper / night)
+├── public/
+│   └── favicon.svg
+└── src/
+    ├── main.tsx               # React entry
+    ├── App.tsx                # providers + Router 6 routes
+    ├── index.css              # Tailwind layers + glass / button utilities
+    ├── types.ts               # Book, User, Shelf, Bookmark, ReaderPrefs
+    ├── lib/
+    │   ├── storage.ts         # namespaced localStorage helpers
+    │   ├── blobStore.ts       # IndexedDB blob store (covers + files)
+    │   ├── crypto.ts          # password hashing + uid
+    │   ├── auth.tsx           # AuthProvider / useAuth
+    │   ├── library.tsx        # LibraryProvider / useLibrary (CRUD, progress, bookmarks)
+    │   └── theme.tsx          # ThemeProvider / useTheme (dark mode)
+    ├── hooks/
+    │   ├── useBlobUrl.ts      # IndexedDB key -> object URL (auto-revoked)
+    │   └── useReaderPrefs.ts  # persisted typography preferences
+    ├── components/
+    │   ├── ParticleBackground.tsx
+    │   ├── Navbar.tsx · ThemeToggle.tsx · Dropdown.tsx · Modal.tsx
+    │   ├── ProtectedRoute.tsx · PasswordInput.tsx
+    │   ├── BookCard.tsx · BookFormModal.tsx
+    │   └── readers/
+    │       ├── types.ts           # shared ReaderHandle / ReaderViewProps
+    │       ├── TxtReader.tsx
+    │       ├── EpubReader.tsx
+    │       ├── PdfReader.tsx
+    │       └── ReaderControls.tsx  # typography + bookmarks + paging
+    ├── pages/
+    │   ├── Landing.tsx · Login.tsx · Register.tsx
+    │   ├── Library.tsx         # the old "dashboard", now functional
+    │   └── Reader.tsx          # picks a reader by file type
+    └── Icons/                  # light/dark logo SVGs
+```
 
-| other | progress | target finish date | person responsible | finish date | 
-|-|:-:|:-:|:-:|:-:|
-| GitHub design and management |✔|3.01.2022|Sandra, Krzysiu| 2.01.2022 | 
-| Welcome-PDF once after register: creation | canceled |  |  |  | 
-| Welcome-PDF once after register: implementation | canceled |  |  |  |  
+## 🧭 Routes
 
+| Path                  | Page    | Access                                        |
+| --------------------- | ------- | --------------------------------------------- |
+| `/`                   | Landing | public (redirects to `/library` if logged in) |
+| `/login`, `/register` | Auth    | public                                        |
+| `/library`            | Library | protected                                     |
+| `/book/:id`           | Reader  | protected                                     |
 
-#### (end date: 2.01.2022)
+## 🌐 Going real
 
-## 4. Control and constant monitoring
- 
- ### 4.1 Control
-	
-	none
-	
- ### 4.2 Monitoring
- 
-	none
-	
-## 5. The End
+Auth and library are isolated behind small async interfaces (`src/lib/auth.tsx`,
+`src/lib/library.tsx`). To back the app with a real service (e.g. **Supabase**):
 
-as said, The End!
+1. Re-implement `register` / `login` / `logout` against your auth provider.
+2. Re-implement the library CRUD methods against your database + object storage,
+   keeping the same method signatures.
+3. The components, pages and routing stay exactly as they are.
 
-### - - -
+> ⚠️ The client-side SHA-256 password hashing in `crypto.ts` exists only so a plaintext
+> password is never written to `localStorage` in this prototype. Real authentication must
+> be done server-side — delete it when you wire up a backend.
 
- *The material was prepared manually, the author has full copyrights to it, the use of the text for non-educational purposes may result in criminal liability.*
- Aurora Reader/GitHub © 2021-2022
+## 👥 Authors
 
-<a href="https://imgur.com/ZTJCO6z"><img src="https://i.imgur.com/ZTJCO6zm.png" title="source: imgur.com" /></a>
+Ula Mądzielewska · Pola Nadarzewska · Sandra Gołuńska · Krzysiek Wiłnicki
+
+## 📄 License
+
+Released under the [MIT License](LICENSE.txt). © 2021–2022 Aurora Reader.

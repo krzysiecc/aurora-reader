@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --accent: #3498db;
+    --accent-2: #161616;
+  }
+
+  html.dark {
+    --accent-2: #f6f6f6;
+  }
+
+  html {
+    @apply antialiased;
+  }
+
+  body {
+    @apply min-h-screen bg-paper text-ink transition-colors duration-300 dark:bg-night dark:text-paper;
+  }
+
+  /* Themed scrollbar so the reader feels native in both modes */
+  * {
+    scrollbar-color: theme('colors.graphite') transparent;
+  }
+}
+
+@layer components {
+  /* Glass-morphism surface used throughout the UI */
+  .glass {
+    @apply border border-white/40 bg-white/60 backdrop-blur-md dark:border-white/10 dark:bg-graphite/40;
+  }
+
+  .glass-input {
+    @apply w-full rounded-lg border-2 border-graphite/70 bg-white/60 px-4 py-2.5 text-ink
+           outline-none transition-colors placeholder:text-ink/50
+           focus:border-accent dark:bg-graphite/80 dark:text-paper dark:placeholder:text-paper/50;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border-2 px-5 py-2.5 font-medium
+           outline-none transition-all focus-visible:ring-2 focus-visible:ring-accent
+           disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply btn border-transparent bg-accent text-white hover:bg-accent-hover;
+  }
+
+  .btn-ghost {
+    @apply btn border-graphite/70 bg-white/60 text-ink hover:border-accent
+           dark:bg-graphite/80 dark:text-paper;
+  }
+
+  .icon-btn {
+    @apply inline-flex h-10 w-10 items-center justify-center rounded-full bg-black/5 text-ink
+           outline-none transition-colors hover:bg-accent/20 hover:text-accent
+           focus-visible:ring-2 focus-visible:ring-accent
+           dark:bg-white/10 dark:text-paper dark:hover:text-accent;
+  }
+}

@@ -1,4 +1,0 @@
-page 	color
-	font	-size
-		-type
-	{/* => isAuthenticated ? (<Book {...props} setAuth={setAuth} />) : (<Redirect to='/login'/>)*/}
